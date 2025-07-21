@@ -34,14 +34,18 @@ if ingredients_list:
     # st.stop()
     time_to_insert=st.button('Submit Order')
     if time_to_insert:
-        session.sql("""
-    INSERT INTO smoothies.public.orders (ingredients, name_on_order, order_filled)
-    VALUES
-      ('pineapple banana', 'Divya', TRUE),
-      ('strawberry mango', 'Kevin', FALSE),
-      ('blueberry spinach', 'Xi', TRUE)
-""").collect()
-        st.success('Your Smoothie is ordered!'+name_on_order, icon="✅")
-import requests
-smoothiefroot_response = requests.get("https://my.smoothiefroot.com/api/fruit/watermelon")
-st.text(smoothiefroot_response)
+      dora_insert = """
+    INSERT INTO smoothies.public.orders (ingredients, name_on_order, order_filled, hash_ing)
+    VALUES 
+      ('combo_for_Kevin', 'Kevin', FALSE, 7976616299844859825),
+      ('combo_for_Divya', 'Divya', TRUE, -6112358379204300652),
+      ('combo_for_Xi', 'Xi', TRUE, 1016924841131818535);
+    """
+    if st.button("Insert DORA Test Orders"):
+        session.sql(dora_insert).collect()
+        st.success("DORA test orders inserted!")
+
+#         st.success('Your Smoothie is ordered!'+name_on_order, icon="✅")
+# import requests
+# smoothiefroot_response = requests.get("https://my.smoothiefroot.com/api/fruit/watermelon")
+# st.text(smoothiefroot_response)
