@@ -32,13 +32,7 @@ if ingredients_list:
     # st.stop()
     time_to_insert=st.button('Submit Order')
     if time_to_insert:
-       session.sql("""
-INSERT INTO smoothies.public.orders (ingredients, name_on_order, order_filled)
-VALUES
-  ('Apples Lime Ximenia', 'Divya', TRUE),
-  ('Dragon Fruit Guava Figs Jackfruit Blueberries', 'Kevin', FALSE),
-  ('Vanilla Fruit Nectarine', 'Xi', TRUE)
-""").collect()
+        session.sql(my_insert_stmt).collect()
         st.success('Your Smoothie is ordered!'+name_on_order, icon="✅")
 import requests
 smoothiefroot_response = requests.get("https://my.smoothiefroot.com/api/fruit/watermelon")
