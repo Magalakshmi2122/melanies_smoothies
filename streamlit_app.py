@@ -32,13 +32,6 @@ if ingredients_list:
     # st.stop()
     time_to_insert=st.button('Submit Order')
     if time_to_insert:
-      insert_stmt = """
-          INSERT INTO smoothies.public.orders (ingredients, name_on_order, order_filled)
-          VALUES
-              ('Apples Lime Ximenia','Kevin',FALSE),
-              ('Dragon Fruit Guava Figs Jackfruit Blueberries','Divya',True),
-              ('Vanilla Fruit Nectarine','Xi',True)
-      """
       session.sql(insert_stmt).collect()
       st.success('✅ Your Smoothie is ordered! ' + name_on_order, icon="✅")
 import requests
